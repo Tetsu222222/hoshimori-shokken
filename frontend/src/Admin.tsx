@@ -261,7 +261,6 @@ export default function Admin() {
       <div style={{marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
         <h1 style={{color: 'var(--primary-blue)', margin: 0}}>星の杜食堂 予約システム管理画面</h1>
         <div style={{display: 'flex', gap: '10px'}}>
-          <button onClick={() => window.location.href = '/admin/urls'} className="btn-outline" style={{padding: '5px 15px', fontSize: '13px', backgroundColor: '#f1f5f9'}}>URL短縮管理</button>
           <button onClick={handleLogout} className="btn-outline" style={{padding: '5px 15px', fontSize: '13px'}}>ログアウト</button>
         </div>
       </div>
