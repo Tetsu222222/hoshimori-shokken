@@ -18,7 +18,7 @@ export default function AdminUrls() {
   const fetchUrls = async () => {
     if (!isLoggedIn) return
     try {
-      const res = await fetch('/api/admin/urls', {
+      const res = await fetch('https://backend.s-yuuui.workers.dev/api/admin/urls', {
         headers: { 'Authorization': `Bearer ${password}` }
       })
       const data = await res.json()
@@ -32,7 +32,7 @@ export default function AdminUrls() {
     const savedPassword = sessionStorage.getItem('admin_password')
     if (savedPassword) {
       setPassword(savedPassword)
-      fetch('/api/admin/verify', {
+      fetch('https://backend.s-yuuui.workers.dev/api/admin/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password: savedPassword })
@@ -48,7 +48,7 @@ export default function AdminUrls() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    const res = await fetch('/api/admin/verify', {
+    const res = await fetch('https://backend.s-yuuui.workers.dev/api/admin/verify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ password })
@@ -66,7 +66,7 @@ export default function AdminUrls() {
     e.preventDefault()
     setIsSubmitting(true)
     try {
-      const res = await fetch('/api/admin/urls', {
+      const res = await fetch('https://backend.s-yuuui.workers.dev/api/admin/urls', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ export default function AdminUrls() {
 
   const handleDeleteUrl = async (code: string) => {
     if (!confirm('この短縮URLを削除してもよろしいですか？')) return
-    await fetch(`/api/admin/urls/${code}`, {
+    await fetch(`https://backend.s-yuuui.workers.dev/api/admin/urls/${code}`, {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${password}` }
     })

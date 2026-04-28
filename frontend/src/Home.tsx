@@ -4,7 +4,7 @@ export default function Home() {
   const [cafeteriaName, setCafeteriaName] = useState('星の杜食堂')
 
   useEffect(() => {
-    fetch('/api/settings')
+    fetch('https://backend.s-yuuui.workers.dev/api/settings')
       .then(res => res.json())
       .then(data => setCafeteriaName(data.cafeteria_name))
   }, [])
