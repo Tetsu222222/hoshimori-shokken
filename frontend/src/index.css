@@ -1,0 +1,107 @@
+:root {
+  --primary-blue: #2563eb;
+  --primary-blue-hover: #1d4ed8;
+  --secondary-blue: #60a5fa;
+  --secondary-blue-hover: #3b82f6;
+  --bg-gradient-start: #eff6ff;
+  --bg-gradient-end: #fafaf9;
+  --text-dark: #1e293b;
+  --text-muted: #64748b;
+  --error-red: #ef4444;
+  --success-green: #10b981;
+  --border-radius: 12px;
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --shadow-color: rgba(0, 0, 0, 0.04);
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  color: var(--text-dark);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+#root { width: 100%; max-width: 800px; }
+
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 25px;
+  box-shadow: 0 10px 25px var(--shadow-color);
+  text-align: center;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+h1 { color: var(--primary-blue); font-size: 24px; font-weight: 800; margin-bottom: 8px; line-height: 1.2; }
+h2 { color: var(--text-dark); font-size: 18px; margin-bottom: 16px; }
+
+.explanation-text {
+  text-align: left; background: #fff; padding: 15px; border-radius: 8px; font-size: 14px;
+  line-height: 1.6; margin-bottom: 20px; color: #475569; white-space: pre-wrap;
+  border: 1px solid #e2e8f0;
+}
+
+.form-group { margin-bottom: 15px; text-align: left; }
+label { display: block; font-weight: 600; margin-bottom: 6px; color: #475569; font-size: 13px; }
+
+select, input, textarea {
+  width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px;
+  font-size: 16px; box-sizing: border-box; background: #fff; transition: border-color 0.2s;
+  -webkit-appearance: none;
+}
+select:focus, input:focus, textarea:focus { border-color: var(--primary-blue); outline: none; }
+
+button {
+  background-color: var(--primary-blue); color: white; border: none; padding: 10px 20px;
+  font-size: 15px; font-weight: 600; border-radius: 8px; cursor: pointer;
+  transition: all 0.2s; display: inline-block;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.1);
+}
+button:hover { background-color: var(--primary-blue-hover); transform: translateY(-1px); }
+button:active { transform: scale(0.98); }
+button:disabled { background-color: #cbd5e1; cursor: not-allowed; transform: none; }
+
+.btn-block { width: 100%; }
+
+.btn-secondary { background-color: var(--secondary-blue); }
+.btn-secondary:hover { background-color: var(--secondary-blue-hover); }
+
+.btn-outline { background-color: transparent; border: 1px solid #e2e8f0; color: #475569; box-shadow: none; }
+.btn-outline:hover { background-color: #f8fafc; border-color: #cbd5e1; }
+
+.btn-danger { background-color: #ef4444; }
+.btn-danger:hover { background-color: #dc2626; }
+
+.ticket-number { font-size: 70px; font-weight: 900; color: var(--primary-blue); margin: 15px 0; }
+.error-message { color: var(--error-red); background: #fef2f2; border: 1px solid #fecaca; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-weight: bold; }
+
+.table-container { overflow-x: auto; margin-top: 20px; text-align: left; border-radius: 8px; border: 1px solid #e2e8f0; }
+table { width: 100%; border-collapse: collapse; background: #fff; font-size: 14px; min-width: 400px; }
+th, td { padding: 12px 10px; border-bottom: 1px solid #f1f5f9; text-align: left; }
+th { background: #f8fafc; font-weight: 600; color: #475569; }
+
+@media (max-width: 600px) {
+  body { padding: 10px; }
+  .card { padding: 20px 15px; }
+  h1 { font-size: 20px; }
+  .ticket-number { font-size: 50px; }
+  
+  /* Buttons expand on mobile for easier tapping */
+  button { width: 100%; margin-bottom: 5px; }
+  
+  .card[style*="display: flex"] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+}

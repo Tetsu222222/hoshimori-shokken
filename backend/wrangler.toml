@@ -1,0 +1,12 @@
+name = "backend"
+main = "src/index.ts"
+compatibility_date = "2024-02-22"
+
+[vars]
+ADMIN_PASSWORD = "admin"
+MASTER_PASSWORD = "%O7buxwqji&HQHP&TkqB"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "cafeteria_db"
+database_id = "1d152510-663a-41ec-9d97-14b2d4be63b3"
