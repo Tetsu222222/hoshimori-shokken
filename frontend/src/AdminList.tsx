@@ -33,11 +33,11 @@ export default function AdminList() {
 
     const fetchData = async () => {
       try {
-        const evRes = await fetch(`https://backend.s-yuuui.workers.dev/api/events/${slug}`)
+        const evRes = await fetch(`/api/events/${slug}`)
         const evData = await evRes.json()
         setEventName(evData.event_name)
 
-        const res = await fetch(`https://backend.s-yuuui.workers.dev/api/admin/events/${evData.id}/reservations`, {
+        const res = await fetch(`/api/admin/events/${evData.id}/reservations`, {
           headers: { 'Authorization': `Bearer ${password}` }
         })
         if (res.status === 401) {

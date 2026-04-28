@@ -43,7 +43,7 @@ export default function Admin() {
   const fetchAdminData = async () => {
     if (!isLoggedIn) return
     try {
-      const evRes = await fetch('https://backend.s-yuuui.workers.dev/api/admin/events', { headers: { 'Authorization': `Bearer ${password}` }})
+      const evRes = await fetch('/api/admin/events', { headers: { 'Authorization': `Bearer ${password}` }})
       const evData = await evRes.json()
       setEvents(Array.isArray(evData) ? evData : [])
     } catch (e) { console.error(e) }
@@ -53,7 +53,7 @@ export default function Admin() {
     const savedPassword = sessionStorage.getItem('admin_password')
     if (savedPassword && !isLoggedIn) {
       setPassword(savedPassword)
-      fetch('https://backend.s-yuuui.workers.dev/api/admin/verify', {
+      fetch('/api/admin/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password: savedPassword })
@@ -73,7 +73,7 @@ export default function Admin() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    const res = await fetch('https://backend.s-yuuui.workers.dev/api/admin/verify', {
+    const res = await fetch('/api/admin/verify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ password })
@@ -88,7 +88,7 @@ export default function Admin() {
 
   const handleChangePassword = async (e: React.FormEvent) => {
     e.preventDefault()
-    const res = await fetch('https://backend.s-yuuui.workers.dev/api/admin/change-password', {
+    const res = await fetch('/api/admin/change-password', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ old_password: password, new_password: newPassword })
@@ -103,7 +103,7 @@ export default function Admin() {
 
   const handleResetPassword = async (e: React.FormEvent) => {
     e.preventDefault()
-    const res = await fetch('https://backend.s-yuuui.workers.dev/api/admin/reset-password', {
+    const res = await fetch('/api/admin/reset-password', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ master_password: masterPassword, new_password: newPassword })
@@ -137,7 +137,7 @@ export default function Admin() {
     }
 
     const method = editingEventId ? 'PUT' : 'POST'
-    const url = editingEventId ? `https://backend.s-yuuui.workers.dev/api/admin/events/${editingEventId}` : 'https://backend.s-yuuui.workers.dev/api/admin/events'
+    const url = editingEventId ? `/api/admin/events/${editingEventId}` : '/api/admin/events'
     
     const res = await fetch(url, {
       method,
@@ -183,7 +183,7 @@ export default function Admin() {
       if (input !== null) alert('入力内容が正しくないため、削除を中止しました。')
       return
     }
-    await fetch(`https://backend.s-yuuui.workers.dev/api/admin/events/${id}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${password}` }})
+    await fetch(`/api/admin/events/${id}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${password}` }})
     fetchAdminData()
   }
 
@@ -322,7 +322,7 @@ export default function Admin() {
           <div style={{display: 'flex', gap: '8px', flexWrap: 'wrap'}}>
             <button onClick={() => copyAnnouncement(ev)} className="btn-outline" style={{padding: '8px 12px', fontSize: '12px', borderColor: 'var(--primary-blue)', color: 'var(--primary-blue)'}}>お知らせコピー</button>
             <button onClick={() => window.open(`/${ev.slug}/list`, '_blank')} className="btn-outline" style={{padding: '8px 12px', fontSize: '12px'}}>リスト表示</button>
-            <button onClick={() => window.location.href = `https://backend.s-yuuui.workers.dev/api/admin/export?id=${ev.id}&password=${password}`} className="btn-outline" style={{padding: '8px 12px', fontSize: '12px'}}>CSV</button>
+            <button onClick={() => window.location.href = `/api/admin/export?id=${ev.id}&password=${password}`} className="btn-outline" style={{padding: '8px 12px', fontSize: '12px'}}>CSV</button>
             <button onClick={() => handleEditClick(ev)} className="btn-secondary" style={{padding: '8px 12px', fontSize: '12px'}}>編集</button>
             <button onClick={() => handleDeleteEvent(ev.id)} className="btn-danger" style={{padding: '8px 12px', fontSize: '12px'}}>削除</button>
           </div>

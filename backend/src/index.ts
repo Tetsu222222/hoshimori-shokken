@@ -26,7 +26,7 @@ async function hashPassword(password: string) {
 const app = new Hono<{ Bindings: Bindings }>()
 
 app.use('/api/*', cors({
-  origin: ['https://reserve.s2gi.net', 'https://hoshinomori-reserve.pages.dev', 'http://localhost:5173'],
+  origin: ['https://reserve.s2gi.net', 'https://stamp.s2gi.net', 'https://hoshimori-shokken.pages.dev', 'https://hoshinomori-reserve.pages.dev', 'http://localhost:5173'],
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 }))
 

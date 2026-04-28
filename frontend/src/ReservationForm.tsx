@@ -31,7 +31,7 @@ export default function ReservationForm() {
   }, [])
 
   useEffect(() => {
-    fetch(`https://backend.s-yuuui.workers.dev/api/events/${slug}`)
+    fetch(`/api/events/${slug}`)
       .then(res => res.json())
       .then(data => {
         if (!data.error) {
@@ -52,7 +52,7 @@ export default function ReservationForm() {
     setError(null)
 
     try {
-      const res = await fetch(`https://backend.s-yuuui.workers.dev/api/events/${slug}/reserve`, {
+      const res = await fetch(`/api/events/${slug}/reserve`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ class_name: className, child_name: childName.trim() })
